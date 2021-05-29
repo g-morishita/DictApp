@@ -1,0 +1,7 @@
+<%= form_with(model: @item, local: true) do |form| %>
+  <%= form.label :name, "Name" %>
+  <%= form.text_field :name %>
+
+  <%= form.file_field :source %>
+  <%= form.submit "Create New Dictation." %>
+<% end %>

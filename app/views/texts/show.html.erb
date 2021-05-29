@@ -1,0 +1,34 @@
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow=<%= @progress %>
+                          aria-valuemin="0" aria-valuemax="100" style="width:<%= @progress %>%">
+                          <span><strong><%= @progress %>% Complete</strong></span>
+  </div>
+</div>
+
+<h1><%= @text.order %> / <%= @item.texts.count %></h1>
+<%= audio_tag url_for(@text.sound), controls: true %>
+
+<%= form_with url: check_url(@item, @text), method: :get do |form| %>
+  <%= form.text_area :body, class: "form-control" %>
+
+  <%= form.submit "Check", class: "btn btn-primary" %>
+<% end %>
+
+<%= form_with url: item_text_url(@item, @text), method: :patch do |form| %>
+  <%= form.text_area :body, class: "form-control"%>
+  <%= form.submit "update", class: "btn btn-primary" %>
+<% end %>
+
+<% if @text.order != @item.texts.count %>
+  <%= link_to  "Skip", item_text_path(@item, @text, order: @text.order + 1), class: "btn btn-default" %>
+<% end %>
+
+<% if @text.order != 1 %>
+  <%= link_to "Back", item_text_path(@item, @text, order: @text.order - 1) %>
+<% end %>

@@ -1,0 +1,45 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* defined color variables */
+$theme-color-blue: #0b3975;
+$white: #fff;
+
+/* universal */
+body {
+  padding-top: 60px; /* prevents the header from overlapping the content. */
+}
+
+/* header */
+.navbar-custom {
+  background-color: $theme-color-blue;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.nav.navbar-nav.navbar-right li a {
+  color: $white;
+}
+
+.nav li a {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* dictaion items index */
+.dictation_items {
+
+}

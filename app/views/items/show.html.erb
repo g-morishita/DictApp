@@ -1,0 +1,5 @@
+<h1>Dictation</h1>
+<h2><%= @item.name %></h2>
+<%= audio_tag url_for(@item.source), controls: true %>
+
+<p><%= link_to "Start dictation!", item_text_path(@item, order: 1), class: "btn btn-primary" %></p>
