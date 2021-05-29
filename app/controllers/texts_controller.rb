@@ -5,7 +5,8 @@ class TextsController < ApplicationController
     order = params[:order] || 1
     @text = @item.texts.find_by(order: order)
     if @text.nil?
-      red
+      flash[:danger] = "不正なパラメタです"
+      redirect_to root_path
     end
     @progress = ((@text.order * 100) / @item.texts.count)
   end
