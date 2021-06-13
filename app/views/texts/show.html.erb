@@ -14,21 +14,19 @@
 <h1><%= @text.order %> / <%= @item.texts.count %></h1>
 <%= audio_tag url_for(@text.sound), controls: true %>
 
+<div class="row">
+  <div class="col-md-4">
 <%= form_with url: check_url(@item, @text), method: :get do |form| %>
-  <%= form.text_area :body, class: "form-control" %>
+  <%= form.text_area :body, class: "form-control dict_area", rows: 5, placeholder: "Type what you hear..."%>
 
   <%= form.submit "Check", class: "btn btn-primary" %>
+  <%= link_to "Skip", item_text_path(@item, @text, order: @text.order + 1), class: "btn btn-default" %>
+  <!-- TODO: Implement skip function to show correct answer and make these buttons disappear -->
 <% end %>
 
-<%= form_with url: item_text_url(@item, @text), method: :patch do |form| %>
-  <%= form.text_area :body, class: "form-control"%>
-  <%= form.submit "update", class: "btn btn-primary" %>
-<% end %>
-
-<% if @text.order != @item.texts.count %>
-  <%= link_to  "Skip", item_text_path(@item, @text, order: @text.order + 1), class: "btn btn-default" %>
-<% end %>
 
 <% if @text.order != 1 %>
   <%= link_to "Back", item_text_path(@item, @text, order: @text.order - 1) %>
 <% end %>
+  </div>
+</div>
