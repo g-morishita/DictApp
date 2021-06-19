@@ -19,9 +19,13 @@
 <%= form_with url: check_url(@item, @text), method: :get do |form| %>
   <%= form.text_area :body, class: "form-control dict_area", rows: 5, placeholder: "Type what you hear..."%>
 
-  <%= form.submit "Check", class: "btn btn-primary" %>
-  <%= link_to "Skip", item_text_path(@item, @text, order: @text.order + 1), class: "btn btn-default" %>
-  <!-- TODO: Implement skip function to show correct answer and make these buttons disappear -->
+  <% if flash[:success] %>
+    <%= link_to "Next", item_text_path(@item, @text, order: @text.order + 1), class: "btn btn-primary" %>
+  <% else %>
+    <%= form.submit "Check", class: "btn btn-primary" %>
+    <%= link_to "Skip", item_text_path(@item, @text, order: @text.order + 1), class: "btn btn-default" %>
+  <% end %>
+    <!-- TODO: Implement skip function to show correct answer and make these buttons disappear -->
 <% end %>
 
 
