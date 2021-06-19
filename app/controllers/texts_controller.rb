@@ -9,6 +9,7 @@ class TextsController < ApplicationController
       redirect_to root_path
     end
     @progress = ((@text.order * 100) / @item.texts.count)
+    @give_up = params[:give_up]
   end
 
   def update
